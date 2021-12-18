@@ -6,25 +6,11 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:12:07 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/18 19:12:08 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/18 20:19:59 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <emashell.h>
-
-void	ft_pcont(t_general *g, size_t type)
-{
-	if (type)
-	{
-		g->parse.comndssize++;
-		g->parse.comand = 1;
-	}
-	else
-	{
-		g->parse.comndssize++;
-		g->parse.comand = 0;
-	}
-}
 
 void	ft_comndssize(t_general *g, char *str)
 {

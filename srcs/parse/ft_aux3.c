@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:11:48 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/18 19:18:34 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/18 20:20:03 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,18 @@ void	ft_checkquotes(t_general *g)
 	}
 	free (g->parse.comnds[g->parse.comndssize - 1]);
 	g->parse.comnds[g->parse.comndssize - 1] = last;
+}
+
+void	ft_pcont(t_general *g, size_t type)
+{
+	if (type)
+	{
+		g->parse.comndssize++;
+		g->parse.comand = 1;
+	}
+	else
+	{
+		g->parse.comndssize++;
+		g->parse.comand = 0;
+	}
 }

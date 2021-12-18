@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:41:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/18 19:35:43 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/18 20:20:10 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,10 @@ void	ft_checknewenv(t_general *g, char *newenv);
 void	ft_remenv(t_general *g, char *remenv);
 size_t	ft_checkenvname(char *name);
 char	**ft_ownenv(char **environ);
+void	ft_inigeneral(t_general *general);
+void	ft_parse(t_general *general, char *str);
+void	ft_printgeneral(t_general *general);
+void	ft_pcont(t_general *g, size_t type);
 
 
 #endif
