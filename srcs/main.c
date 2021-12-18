@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 18:13:22 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/18 20:16:34 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/18 22:52:46 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@ void	ft_freegeneral(t_general *g)
 	while (++i < g->argssize)
 		free(g->args[i].content);
 	free(g->args);
+	free(g->fds);
 	ft_freedouble(g->parse.comnds);
 }
 
 void	ft_prompt(t_general *g)
 {
 	char	*command;
-	//pid_t	pid;
+	pid_t	pid;
 
 	command = ft_calloc(sizeof(char), 64);
 	while (command && ft_strncmp(command, "exit", 4))
@@ -38,7 +39,7 @@ void	ft_prompt(t_general *g)
 			ft_inigeneral(g);
 			ft_parse(g, command);
 			ft_printgeneral(g);
-			//ft_executor(g, g->ownenv, &pid);
+			ft_executor(g);
 			ft_freegeneral(g);
 		}
 		/* else if (command && !ft_strncmp(command, "exit", 4))
@@ -57,5 +58,6 @@ int	main(int argc, char **argv)
 	g_minishell.ownenv = ft_ownenv(environ);
 	ft_prompt(&g_minishell);
 	printf("exit\n");
+	//system("leaks minishell");
 	return (0);
 }

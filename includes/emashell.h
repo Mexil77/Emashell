@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:41:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/18 20:20:10 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/18 22:51:28 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,18 @@ typedef struct s_parse
 
 typedef struct s_general {
 	size_t	npipes;
+	size_t	nfds;
 	size_t	nexecutables;
 	size_t	nsemicolons;
 	size_t	ncommands;
 	size_t	nredirections;
 	t_arg	*args;
+	int		*fds;
 	int		quot;
 	int		dquot;
 	char	**ownenv;
 	t_parse	parse;
 	size_t	argssize;
-	int		*pospipes;
-	
 }			t_general;
 
 void	ft_freedouble(char **split);
@@ -83,6 +83,9 @@ void	ft_inigeneral(t_general *general);
 void	ft_parse(t_general *general, char *str);
 void	ft_printgeneral(t_general *general);
 void	ft_pcont(t_general *g, size_t type);
+
+void	ft_executor(t_general *g);
+void	ft_createfds(t_general *g);
 
 
 #endif
