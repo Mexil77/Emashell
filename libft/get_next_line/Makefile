@@ -9,12 +9,12 @@ RM		= rm -rf
 all: ${NAME}
 
 $(NAME): ${OBJS}
-	ar -crs ${NAME} ${OBJS}
+	@ar -crs ${NAME} ${OBJS}
 
 clean:
-	${RM} ${OBJS} ${OBJS_B}
+	@${RM} ${OBJS} ${OBJS_B}
 
 fclean: clean
-	${RM} ${NAME}
+	@${RM} ${NAME}
 
 re: fclean all

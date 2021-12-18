@@ -6,7 +6,7 @@
 #    By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/18 17:52:26 by emgarcia          #+#    #+#              #
-#    Updated: 2021/12/18 19:24:14 by emgarcia         ###   ########.fr        #
+#    Updated: 2021/12/18 19:37:14 by emgarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,20 +34,20 @@ LIBFT		=	./libft/libft.a
 all: ${NAME}
 
 $(OBJS_PATH)/%.o: $(SRCS_PATH)/%.c
-	mkdir -p $(OBJS_PATH)/parse 2> /dev/null || true
-	mkdir -p $(OBJS_PATH)/builtins 2> /dev/null || true
-	$(CC) $(INCLUDES) -o $@ -c $^
+	@mkdir -p $(OBJS_PATH)/parse 2> /dev/null || true
+	@mkdir -p $(OBJS_PATH)/builtins 2> /dev/null || true
+	@$(CC) $(INCLUDES) -o $@ -c $^
 
 ${NAME}: ${OBJS}
-	make -C libft
+	@make -C libft
 	${CC} ${CFLAGS} ${LIBFT} ${OBJS} -o ${NAME}
 
 clean:
-	cd libft ; make fclean
-	${RM} ${OBJS}
+	@cd libft ; make fclean
+	@${RM} ${OBJS}
 
 fclean: clean
-	cd libft ; make fclean
-	${RM} ${NAME}
+	@cd libft ; make fclean
+	@${RM} ${NAME}
 
 re: fclean all
