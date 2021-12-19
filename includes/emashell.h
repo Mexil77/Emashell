@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:41:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/19 04:16:03 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/19 17:22:50 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void	ft_createfds(t_general *g);
 void	ft_createpipes(t_general *g);
 void	ft_makeprocess(t_general *g);
 void	ft_closeallfdspipes(t_general *g);
-size_t	ft_getenvpos(char *envvar, char **env);
-
+int		ft_getenvpos(char *envvar, char **env);
 
 #endif

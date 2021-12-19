@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:08:17 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/18 19:08:34 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/19 17:22:29 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ size_t	ft_getoldpathpos(char	**env)
 	return (0);
 }
 
-size_t	ft_getenvpos(char *envvar, char **env)
+int	ft_getenvpos(char *envvar, char **env)
 {
 	size_t	i;
 
@@ -42,7 +42,7 @@ size_t	ft_getenvpos(char *envvar, char **env)
 	while (env[++i])
 		if (!ft_strncmp(env[i], envvar, ft_strlen(envvar)))
 			return (i);
-	return (0);
+	return (-1);
 }
 
 void	ft_cd(char	***env, char *path)
