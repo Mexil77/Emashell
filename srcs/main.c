@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 18:13:22 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/18 22:52:46 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/19 00:03:53 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@ void	ft_freegeneral(t_general *g)
 {
 	size_t	i;
 
+	i = -1;
+	while (++i < g->npipes)
+		free(g->pipes[i]);
+	free(g->pipes);
 	i = -1;
 	while (++i < g->argssize)
 		free(g->args[i].content);
@@ -38,8 +42,8 @@ void	ft_prompt(t_general *g)
 		{
 			ft_inigeneral(g);
 			ft_parse(g, command);
-			ft_printgeneral(g);
 			ft_executor(g);
+			//ft_printgeneral(g);
 			ft_freegeneral(g);
 		}
 		/* else if (command && !ft_strncmp(command, "exit", 4))

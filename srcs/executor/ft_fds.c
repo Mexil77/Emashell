@@ -6,17 +6,20 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 22:15:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/18 23:06:52 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/19 00:06:55 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <emashell.h>
 
-void	ft_openfds(t_general *g)
+void	ft_createfds(t_general *g)
 {
 	size_t	i;
 	size_t	nfd;
 
+	g->fds = calloc(sizeof(int), g->nfds);
+	if (!g->fds)
+		return ;
 	nfd = 0;
 	i = -1;
 	while (++i < g->argssize)
@@ -30,17 +33,4 @@ void	ft_openfds(t_general *g)
 						O_CREAT | O_RDWR | O_TRUNC, 0644);
 		}
 	}
-}
-
-void	ft_createfds(t_general *g)
-{
-	size_t	i;
-
-	g->fds = calloc(sizeof(int), g->nfds);
-	if (!g->fds)
-		return ;
-	ft_openfds(g);
-	i = -1;
-	while (++i < g->nfds)
-		printf("fds[%zu] : %d\n", i, g->fds[i]);
 }

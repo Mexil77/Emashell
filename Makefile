@@ -6,7 +6,7 @@
 #    By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/18 17:52:26 by emgarcia          #+#    #+#              #
-#    Updated: 2021/12/18 22:16:15 by emgarcia         ###   ########.fr        #
+#    Updated: 2021/12/19 00:50:35 by emgarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRCS		=	main.c ft_ownenv.c											\
 				parse/ft_aux3.c parse/ft_dropquotes.c parse/ft_parse.c		\
 				builtins/ft_addenv.c builtins/ft_cd.c builtins/ft_expuns.c	\
 				builtins/ft_remenv.c	\
-				executor/ft_executor.c executor/ft_fds.c
+				executor/ft_executor.c executor/ft_fds.c					\
+				executor/ft_pipes.c executor/ft_process.c
 OBJS		=	$(addprefix $(OBJS_PATH)/,$(SRCS:.c=.o))
 LIBFT		=	./libft/libft.a
 

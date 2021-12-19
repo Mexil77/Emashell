@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_executor.c                                      :+:      :+:    :+:   */
+/*   ft_pipes.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/18 20:31:48 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/19 09:48:06 by emgarcia         ###   ########.fr       */
+/*   Created: 2021/12/18 23:14:47 by emgarcia          #+#    #+#             */
+/*   Updated: 2021/12/18 23:46:08 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <emashell.h>
 
-void	ft_closeallfdspipes(t_general *g)
+void	ft_createpipes(t_general *g)
 {
 	size_t	i;
 
-	i = -1;
-	while (++i < g->nfds)
-		close(g->fds[i]);
+	g->pipes = calloc(sizeof(int *), g->npipes);
+	if (!g->pipes)
+		return ;
 	i = -1;
 	while (++i < g->npipes)
 	{
-		close(g->pipes[i][0]);
-		close(g->pipes[i][1]);
+		g->pipes[i] = calloc(sizeof(int), 2);
+		if (!g->pipes[i])
+			return ;
+		pipe(g->pipes[i]);
 	}
-}
-
-void	ft_executor(t_general *g)
-{
-	ft_createfds(g);
-	ft_createpipes(g);
-	ft_makeprocess(g);
-	//ft_printgeneral(g);
-	ft_closeallfdspipes(g);
 }
