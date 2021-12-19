@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 00:49:04 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/19 12:05:36 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/19 12:17:59 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,5 @@ void	ft_makeprocess(t_general *g)
 	while (++i < g->npipes + 1)
 	{
 		waitpid(-1, &j, 0);
-		printf("Llegue[%d]\n", i);
 	}
 }
