@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 00:49:04 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/19 17:26:57 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/19 18:11:13 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,10 @@ void	ft_checknexer(t_general *g, char *exe)
 	if (!bins)
 		perror("Path not found.");
 	myexe = ft_split(exe, ' ');
+	if (!ft_strncmp(myexe[0], "unset", 4)
+		|| !ft_strncmp(myexe[0], "export", 6)
+		|| !ft_strncmp(myexe[0], "cd", 2))
+		exit(0);
 	i = -1;
 	while (++i < ft_splitlen(bins))
 	{

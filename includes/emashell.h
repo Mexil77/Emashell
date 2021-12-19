@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:41:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/19 17:22:50 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/19 18:12:41 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include "../libft/libft.h"
 
 # define CLOSE "\001\033[0m\002"
-# define BEGIN(x, y, z) "\001\033["#x";"#y";"#z"m\002"
+# define BEGIN "\001\033[1;49;34m\002"
 
 typedef struct s_arg {
 	size_t	type;
@@ -84,6 +84,8 @@ void	ft_inigeneral(t_general *general);
 void	ft_parse(t_general *general, char *str);
 void	ft_printgeneral(t_general *general);
 void	ft_pcont(t_general *g, size_t type);
+void	ft_cd(char	***env, char *path);
+void	ft_parsebuiltin(t_general *g_mini, char **cmd);
 
 void	ft_executor(t_general *g);
 void	ft_createfds(t_general *g);
@@ -91,5 +93,6 @@ void	ft_createpipes(t_general *g);
 void	ft_makeprocess(t_general *g);
 void	ft_closeallfdspipes(t_general *g);
 int		ft_getenvpos(char *envvar, char **env);
+void	ft_builtins(t_general *g);
 
 #endif

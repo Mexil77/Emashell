@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 18:13:22 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/19 17:45:31 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/19 17:53:59 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ void	ft_prompt(t_general *g)
 	while (command && ft_strncmp(command, "exit", 4))
 	{
 		free(command);
-		command = readline(BEGIN(1, 49, 34)"Emashell-1.0$ "CLOSE);
+		command = readline(BEGIN"Emashell-1.0$ "CLOSE);
 		if (command && ft_strncmp(command, "exit", 4) && command[0] != '\0')
 		{
 			ft_inigeneral(g);
 			ft_parse(g, command);
 			ft_executor(g);
-			ft_printgeneral(g);
+			//ft_printgeneral(g);
 			ft_freegeneral(g);
 		}
 	}
