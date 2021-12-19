@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 20:31:48 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/19 09:48:06 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/19 14:20:39 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,4 @@ void	ft_executor(t_general *g)
 	ft_createpipes(g);
 	ft_makeprocess(g);
 	//ft_printgeneral(g);
-	ft_closeallfdspipes(g);
 }

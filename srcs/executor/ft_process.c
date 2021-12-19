@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 00:49:04 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/19 12:17:59 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/19 14:20:59 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_checknexer(t_general *g, char *exe)
 	{
 		paths = ft_strjoin(bins[i], "/");
 		ft_strownjoin(&paths, myexe[0]);
-		if (!access(paths, R_OK))
+		if (!access(paths, X_OK))
 			execve(paths, myexe, g->ownenv);
 		free (paths);
 	}
@@ -111,9 +111,8 @@ void	ft_makeprocess(t_general *g)
 		if (!pid)
 			ft_exer(g, i);
 	}
+	ft_closeallfdspipes(g);
 	i = -1;
 	while (++i < g->npipes + 1)
-	{
 		waitpid(-1, &j, 0);
-	}
 }
