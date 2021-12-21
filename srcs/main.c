@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 18:13:22 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/21 14:49:36 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/21 14:50:02 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_prompt(t_general *g)
 			ft_inigeneral(g);
 			ft_parse(g, command);
 			ft_executor(g);
-			//ft_printgeneral(g);
+			ft_printgeneral(g);
 			ft_freegeneral(g);
 		}
 	}
