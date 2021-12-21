@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:41:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/19 18:12:41 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/21 14:37:10 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 
 typedef struct s_arg {
 	size_t	type;
-	char	*content;
+	char	**content;
 }			t_arg;
 
 typedef struct s_parse
@@ -64,7 +64,7 @@ size_t	ft_contsp(t_general *g, size_t i);
 size_t	ft_error(size_t ncomands);
 void	ft_iniargs(t_general *g);
 void	ft_iniarg(t_general *g, size_t *j, char *str);
-t_arg	*ft_copycleanargs(t_general *g);
+t_arg	*ft_copycleanargs(t_general *g, size_t newargs);
 void	ft_freecontent(t_arg *args, size_t argssize);
 char	*ft_dropquotes(t_general *g, char *str);
 char	*ft_dropexportquotes(t_general *g, char *str);
@@ -86,6 +86,8 @@ void	ft_printgeneral(t_general *general);
 void	ft_pcont(t_general *g, size_t type);
 void	ft_cd(char	***env, char *path);
 void	ft_parsebuiltin(t_general *g_mini, char **cmd);
+char	**ft_dropkeyvalue(char *str, int quote, int dquote);
+size_t	ft_ignorespace(size_t *i, char *str);
 
 void	ft_executor(t_general *g);
 void	ft_createfds(t_general *g);

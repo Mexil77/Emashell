@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 17:42:45 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/19 17:44:37 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/21 14:16:31 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_prtingeneral2(t_general *g)
 {
 	size_t	i;
+	size_t	j;
 
 	printf("PIPES\n");
 	printf("npipes : %zu\n", g->npipes);
@@ -28,7 +29,9 @@ void	ft_prtingeneral2(t_general *g)
 	while (g->args && ++i < g->argssize)
 	{
 		printf("arg[%zu].type : %zu\n", i, g->args[i].type);
-		printf("arg[%zu].content : %s\n", i, g->args[i].content);
+		j = -1;
+		while (g->args[i].content[++j])
+			printf("arg[%zu].content[%zu] : %s\n", i, j, g->args[i].content[j]);
 	}
 	printf("-----------------------------------------\n");
 }

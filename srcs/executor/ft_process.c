@@ -81,7 +81,7 @@ void	ft_checknexer(t_general *g, char *exe)
 	}
 	ft_freedouble(bins);
 	ft_freedouble(myexe);
-	printf("Commmand not found.\n");
+	printf("Commmand ->not found.\n");
 	exit(0);
 }
 

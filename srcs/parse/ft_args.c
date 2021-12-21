@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:09:12 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/18 19:09:16 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/21 14:21:47 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	ft_iniargs(t_general *g)
 		if (ft_strlen(g->parse.comnds[i]) > 1)
 		{
 			g->args[j].type = 3;
-			g->args[j++].content = ft_strdup(g->parse.comnds[i]);
+			g->args[j++].content = ft_dropkeyvalue(g->parse.comnds[i], 1, 1);
 		}
 		else if (ft_strlen(g->parse.comnds[i]))
 		{
