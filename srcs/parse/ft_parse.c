@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:12:07 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/21 14:38:04 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/21 18:53:59 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_comndssize(t_general *g, char *str)
 			g->dquot = -g->dquot;
 		else if (ft_spchar(str[i]) && g->quot > 0 && g->dquot > 0)
 			ft_pcont(g, 1);
-		else if (g->parse.comand)
+		else if (g->parse.comand && str[i] != ' ')
 			ft_pcont(g, 0);
 	}
 	g->quot = 1;
@@ -95,13 +95,12 @@ void	ft_fillcomands(t_general *g, char *str)
 		{
 			if (i - ini > 0)
 				g->parse.comnds[j++] = ft_substr(str, ini, i - ini);
-			g->parse.comnds[j++] = ft_substr(str, i++, 1);
-			ini = ft_ignorespace(&i, str);
+			g->parse.comnds[j++] = ft_substr(str, i, 1);
+			ini = ft_ignorespace(i + 1, str);
 		}
 	}
 	if (j < g->parse.comndssize)
 		g->parse.comnds[j++] = ft_substr(str, ini, i - ini);
-	ft_replaceempty(g);
 }
 
 void	ft_parse(t_general *general, char *str)

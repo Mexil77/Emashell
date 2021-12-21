@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:11:48 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/21 14:37:38 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/21 18:52:13 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ void	ft_pcont(t_general *g, size_t type)
 	}
 }
 
-size_t	ft_ignorespace(size_t *i, char *str)
+size_t	ft_ignorespace(size_t i, char *str)
 {
-	while (str[*i] == ' ')
-		(*i)++;
-	return (*i);
+	while (str[i] == ' ')
+		i++;
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:41:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/21 14:37:10 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/21 18:52:16 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	ft_pcont(t_general *g, size_t type);
 void	ft_cd(char	***env, char *path);
 void	ft_parsebuiltin(t_general *g_mini, char **cmd);
 char	**ft_dropkeyvalue(char *str, int quote, int dquote);
-size_t	ft_ignorespace(size_t *i, char *str);
+size_t	ft_ignorespace(size_t i, char *str);
 
 void	ft_executor(t_general *g);
 void	ft_createfds(t_general *g);
