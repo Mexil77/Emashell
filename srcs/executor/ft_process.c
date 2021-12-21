@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 00:49:04 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/19 18:11:13 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/21 16:42:32 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,32 +55,29 @@ char	**ft_getbins(t_general *g)
 	return (ft_split(paths, ':'));
 }
 
-void	ft_checknexer(t_general *g, char *exe)
+void	ft_checknexer(t_general *g, char **exe)
 {
 	char	**bins;
-	char	**myexe;
 	char	*path;
 	size_t	i;
 
 	bins = ft_getbins(g);
 	if (!bins)
 		perror("Path not found.");
-	myexe = ft_split(exe, ' ');
-	if (!ft_strncmp(myexe[0], "unset", 4)
-		|| !ft_strncmp(myexe[0], "export", 6)
-		|| !ft_strncmp(myexe[0], "cd", 2))
+	if (!ft_strncmp(exe[0], "unset", 4)
+		|| !ft_strncmp(exe[0], "export", 6)
+		|| !ft_strncmp(exe[0], "cd", 2))
 		exit(0);
 	i = -1;
 	while (++i < ft_splitlen(bins))
 	{
 		path = ft_strjoin(bins[i], "/");
-		ft_strownjoin(&path, myexe[0]);
+		ft_strownjoin(&path, exe[0]);
 		if (!access(path, X_OK))
-			execve(path, myexe, g->ownenv);
+			execve(path, exe, g->ownenv);
 		free (path);
 	}
 	ft_freedouble(bins);
-	ft_freedouble(myexe);
 	printf("Commmand ->not found.\n");
 	exit(0);
 }
