@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:12:07 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/18 20:19:59 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/21 14:38:04 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ void	ft_fillcomands(t_general *g, char *str)
 		{
 			if (i - ini > 0)
 				g->parse.comnds[j++] = ft_substr(str, ini, i - ini);
-			g->parse.comnds[j++] = ft_substr(str, i, 1);
-			ini = i + 1;
+			g->parse.comnds[j++] = ft_substr(str, i++, 1);
+			ini = ft_ignorespace(&i, str);
 		}
 	}
 	if (j < g->parse.comndssize)

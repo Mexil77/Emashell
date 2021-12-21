@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:08:46 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/18 19:08:49 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/21 14:34:43 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@ void	ft_changequote(int *quote, int *dquote, char c)
 		*dquote *= -1;
 }
 
-char	**ft_dropkeyvalue(char *str, size_t size, int quote, int dquote)
+char	**ft_dropkeyvalue(char *str, int quote, int dquote)
 {
 	size_t	i;
 	size_t	j;
 	size_t	ultima;
 	char	**cmd;
 
-	cmd = ft_calloc(sizeof(char *), (size + 1));
+	cmd = ft_calloc(sizeof(char *), (ft_countkeyvalue(str) + 1));
 	if (!cmd)
 		return (NULL);
 	i = -1;
@@ -83,8 +83,7 @@ char	**ft_splitkeyvalue(t_general *g, char *str)
 
 	if (!str)
 		return (NULL);
-	size = ft_countkeyvalue(str);
-	cmd = ft_dropkeyvalue(str, size, 1, 1);
+	cmd = ft_dropkeyvalue(str, 1, 1);
 	i = -1;
 	while (cmd[++i])
 	{
