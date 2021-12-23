@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 18:13:22 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/23 17:32:45 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/23 17:38:42 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,14 @@ void	ft_prompt(t_general *g)
 	{
 		free(command);
 		command = readline(BEGIN"Emashell-1.0$ "CLOSE);
+		add_history (command);
 		if (command && ft_strncmp(command, "exit", 4) && command[0] != '\0')
 		{
 			ft_inigeneral(g);
 			ft_parse(g, command);
+			if (g->args)
+				ft_executor(g);
 			ft_printgeneral(g);
-			ft_executor(g);
 			ft_freegeneral(g);
 			system("leaks minishell > /dev/ttys001");
 		}

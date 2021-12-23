@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:41:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/23 16:16:25 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/23 17:40:04 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_general {
 
 void	ft_freedouble(char **split);
 size_t	ft_contsp(t_general *g, size_t i);
-size_t	ft_error(size_t ncomands);
+size_t	ft_error(size_t ncomands, size_t i, char **cmds);
 void	ft_iniargs(t_general *g);
 void	ft_iniarg(t_general *g, size_t *j, char *str);
 t_arg	*ft_copycleanargs(t_general *g, size_t newargs);

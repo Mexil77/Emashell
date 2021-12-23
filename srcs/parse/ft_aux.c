@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:09:55 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/23 17:17:26 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/23 17:39:49 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,15 @@ size_t	ft_spchar(char c)
 	return (0);
 }
 
-size_t	ft_error(size_t ncomands)
+size_t	ft_error(size_t ncomands, size_t i, char **cmds)
 {
-	if (ncomands > 3)
-		printf("syntax error near unexpected token `>>'\n");
-	else
-		printf("syntax error near unexpected token `>'\n");
+	size_t	j;
+
+	printf("syntax error near unexpected token `");
+	j = ncomands - 3;
+	while (++j < ncomands)
+		printf("%s", cmds[i + j]);
+	printf("\'\n");
 	return (0);
 }
 
