@@ -6,7 +6,7 @@
 #    By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/18 17:52:26 by emgarcia          #+#    #+#              #
-#    Updated: 2021/12/19 17:59:18 by emgarcia         ###   ########.fr        #
+#    Updated: 2021/12/23 17:20:29 by emgarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,8 @@ SRCS_PATH	=	./srcs
 OBJS_PATH	=	./objs
 INCLUDES	=	-I ./includes
 
-#CFLAGS		=	-Wall -Wextra -Werror -lreadline
-CFLAGS		=	-Wall -Wextra -Werror -g3 -fsanitize=address -lreadline
+CFLAGS		=	-Wall -Wextra -Werror -lreadline
+#CFLAGS		=	-Wall -Wextra -Werror -g3 -fsanitize=address -lreadline
 
 SRCS		=	main.c ft_ownenv.c											\
 				parse/ft_args.c parse/ft_args2.c parse/ft_args3.c			\

@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:09:55 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/23 16:07:21 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/23 17:17:26 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_inigeneral(t_general *general)
 	general->pipes = NULL;
 	general->quot = 1;
 	general->dquot = 1;
-	general->parse.comand = 0;
+	general->parse.comand = 1;
 	general->parse.comnds = NULL;
 	general->parse.comndssize = 0;
 	general->argssize = 0;

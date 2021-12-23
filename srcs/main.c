@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 18:13:22 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/23 16:07:05 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/23 17:32:45 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,13 @@ void	ft_freegeneral(t_general *g)
 	free(g->pipes);
 	i = -1;
 	while (++i < g->argssize)
-		free(g->args[i].content);
-	free(g->args);
-	free(g->fds);
-	ft_freedouble(g->parse.comnds);
+		ft_freebidstr(g->args[i].content);
+	if (g->args)
+		free(g->args);
+	if (g->parse.comnds)
+		ft_freebidstr(g->parse.comnds);
+	if (g->fds)
+		free(g->fds);
 }
 
 void	ft_prompt(t_general *g)
@@ -42,9 +45,10 @@ void	ft_prompt(t_general *g)
 		{
 			ft_inigeneral(g);
 			ft_parse(g, command);
-			ft_executor(g);
 			ft_printgeneral(g);
+			ft_executor(g);
 			ft_freegeneral(g);
+			system("leaks minishell > /dev/ttys001");
 		}
 	}
 	free(command);
