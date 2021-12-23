@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:09:12 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/21 18:55:58 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/23 16:24:37 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,27 +78,31 @@ size_t	ft_argssize(t_general *g)
 
 void	ft_dropspargs(t_general *g, size_t *i, size_t *j, size_t ncomands)
 {
+	char	*aux;
+
 	if (ncomands == 3)
 	{
-		ft_iniarg(g, j, ft_strdup(g->parse.comnds[*i]));
-		ft_iniarg(g, j, ft_strjoin(g->parse.comnds[*i + 1],
-				g->parse.comnds[*i + 2]));
+		ft_iniarg(g, j, g->parse.comnds[*i]);
+		aux = ft_strjoin(g->parse.comnds[*i + 1], g->parse.comnds[*i + 2]);
+		ft_iniarg(g, j, aux);
+		free (aux);
 		*i += 2;
 	}
 	else if (ncomands == 2 && g->parse.comnds[*i][0] == '|')
 	{
-		ft_iniarg(g, j, ft_strdup(g->parse.comnds[*i]));
-		ft_iniarg(g, j, ft_strdup(g->parse.comnds[*i + 1]));
+		ft_iniarg(g, j, g->parse.comnds[*i]);
+		ft_iniarg(g, j, g->parse.comnds[*i + 1]);
 		*i += 1;
 	}
 	else if (ncomands == 2)
 	{
-		ft_iniarg(g, j, ft_strjoin(g->parse.comnds[*i],
-				g->parse.comnds[*i + 1]));
+		aux = ft_strjoin(g->parse.comnds[*i], g->parse.comnds[*i + 1]);
+		ft_iniarg(g, j, aux);
+		free (aux);
 		*i += 1;
 	}
 	else
-		ft_iniarg(g, j, ft_strdup(g->parse.comnds[*i]));
+		ft_iniarg(g, j, g->parse.comnds[*i]);
 }
 
 void	ft_iniargs(t_general *g)
@@ -109,7 +113,7 @@ void	ft_iniargs(t_general *g)
 
 	if (!ft_argssize(g))
 		return ;
-	g->args = calloc(sizeof(t_arg), (g->argssize + 1));
+	g->args = ft_calloc(sizeof(t_arg), (g->argssize + 1));
 	if (!g->args)
 		return ;
 	i = -1;
@@ -117,12 +121,12 @@ void	ft_iniargs(t_general *g)
 	ncomnds = 0;
 	while (++i < g->parse.comndssize)
 	{
-		if (ft_strlen(g->parse.comnds[i]) > 1)
+		if (ft_strlen(g->parse.comnds[i]) > 1 || !ft_isspar(g->parse.comnds[i]))
 		{
 			g->args[j].type = 3;
 			g->args[j++].content = ft_dropkeyvalue(g->parse.comnds[i], 1, 1);
 		}
-		else if (ft_strlen(g->parse.comnds[i]))
+		else if (ft_isspar(g->parse.comnds[i]))
 		{
 			ncomnds = ft_contsp(g, i);
 			ft_dropspargs(g, &i, &j, ncomnds);

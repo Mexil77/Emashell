@@ -6,29 +6,31 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:08:46 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/21 14:34:43 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/23 16:19:53 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <emashell.h>
 
-size_t	ft_countkeyvalue(char *str)
+size_t	ft_countkeyvalue(char *str, int quote, int dquote)
 {
 	size_t	i;
+	size_t	last;
 	size_t	size;
-	int		quote;
-	int		dquote;
 
 	if (!str)
 		return (0);
 	i = -1;
-	quote = 1;
-	dquote = 1;
 	size = 0;
+	last = 0;
 	while (str[++i])
 	{
 		if (str[i] == ' ' && dquote > 0 && quote > 0)
-			size++;
+		{
+			if (i - last > 0)
+				size++;
+			last = i;
+		}
 		if (str[i] == '\'' && dquote > 0)
 			quote *= -1;
 		if (str[i] == '\"' && quote > 0)
@@ -51,26 +53,27 @@ char	**ft_dropkeyvalue(char *str, int quote, int dquote)
 {
 	size_t	i;
 	size_t	j;
-	size_t	ultima;
+	size_t	last;
 	char	**cmd;
 
-	cmd = ft_calloc(sizeof(char *), (ft_countkeyvalue(str) + 1));
+	cmd = ft_calloc(sizeof(char *), (ft_countkeyvalue(str, 1, 1) + 1));
 	if (!cmd)
 		return (NULL);
 	i = -1;
 	j = 0;
-	ultima = 0;
+	last = 0;
 	while (str[++i])
 	{
 		if (str[i] == ' ' && dquote > 0 && quote > 0)
 		{
-			cmd[j++] = ft_substr(str, ultima, i - ultima);
-			ultima = i + 1;
+			if (i - last > 0)
+				cmd[j++] = ft_substr(str, last, i - last);
+			last = i + 1;
 		}
 		ft_changequote(&quote, &dquote, str[i]);
 	}
 	if (str[i - 1] != ' ')
-		cmd[j++] = ft_substr(str, ultima, i - ultima);
+		cmd[j++] = ft_substr(str, last, i - last);
 	return (cmd);
 }
 
@@ -101,21 +104,15 @@ char	**ft_splitkeyvalue(t_general *g, char *str)
 void	ft_parsebuiltin(t_general *g, char **cmd)
 {
 	int		i;
-	char	*joined;
-	char	**auxcmd;
 
 	i = 0;
 	if (!ft_strncmp(cmd[0], "export", 7) && ft_bidstrlen(cmd) == 1)
 		ft_printsortenv(g->ownenv);
 	else if (!ft_strncmp(cmd[0], "export", 6))
 	{
-		joined = ft_splitjoin(&cmd[1], ' ');
-		auxcmd = ft_splitkeyvalue(g, joined);
-		free (joined);
 		i = -1;
-		while (auxcmd[++i])
-			ft_checknewenv(g, auxcmd[i]);
-		free(auxcmd);
+		while (cmd[++i])
+			ft_checknewenv(g, cmd[i]);
 	}
 	else if (!ft_strncmp(cmd[0], "unset", 5))
 		while (cmd[++i])

@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 19:47:54 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/04 22:19:12 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/23 16:23:00 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	**ft_strsort(char **split)
 
 	if (!split)
 		return (NULL);
-	sort = calloc(sizeof(char *), (ft_splitlen(split) + 1));
+	sort = ft_calloc(sizeof(char *), (ft_splitlen(split) + 1));
 	if (!sort)
 		return (NULL);
 	i = -1;

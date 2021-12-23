@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:09:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/21 14:24:00 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/23 16:21:46 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	ft_droprefact(t_general *g, size_t newargs)
 
 	oldsizeargs = g->argssize;
 	tmp = ft_copycleanargs(g, newargs);
-	g->args = calloc(sizeof(t_arg), g->argssize);
+	g->args = ft_calloc(sizeof(t_arg), g->argssize);
 	if (!g->args)
 		exit(0);
 	i = -1;

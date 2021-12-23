@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:12:07 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/21 18:53:59 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/23 16:11:05 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,24 @@
 void	ft_comndssize(t_general *g, char *str)
 {
 	size_t	i;
+	char	*aux;
 
+	aux = ft_dropspace(str);
 	i = -1;
-	while (++i < ft_strlen(str))
+	while (++i < ft_strlen(aux))
 	{
-		if (str[i] == '\'' && g->dquot > 0)
+		if (aux[i] == '\'' && g->dquot > 0)
 			g->quot = -g->quot;
-		else if (str[i] == '\"' && g->quot > 0)
+		else if (aux[i] == '\"' && g->quot > 0)
 			g->dquot = -g->dquot;
-		else if (ft_spchar(str[i]) && g->quot > 0 && g->dquot > 0)
+		if (ft_spchar(aux[i]) && g->quot > 0 && g->dquot > 0)
 			ft_pcont(g, 1);
-		else if (g->parse.comand && str[i] != ' ')
+		else if (g->parse.comand)
 			ft_pcont(g, 0);
 	}
 	g->quot = 1;
 	g->dquot = 1;
+	free (aux);
 }
 
 char	*ft_joincomnd(char **split, size_t *i, size_t size)
@@ -82,9 +85,9 @@ void	ft_fillcomands(t_general *g, char *str)
 	size_t	i;
 	size_t	j;
 
-	ini = 0;
-	i = -1;
 	j = 0;
+	i = -1;
+	ini = ft_ignorespace(i + 1, str);
 	while (++i < ft_strlen(str))
 	{
 		if (str[i] == '\'' && g->dquot > 0)
@@ -103,23 +106,27 @@ void	ft_fillcomands(t_general *g, char *str)
 		g->parse.comnds[j++] = ft_substr(str, ini, i - ini);
 }
 
-void	ft_parse(t_general *general, char *str)
+void	ft_parse(t_general *g, char *str)
 {
-	size_t	i;
+	char	*aux;
 
-	ft_comndssize(general, str);
-	general->parse.comnds = calloc(sizeof(char *),
-			(general->parse.comndssize + 1));
-	if (!general->parse.comnds)
+	ft_comndssize(g, str);
+	g->parse.comnds = ft_calloc(sizeof(char *),
+			(g->parse.comndssize + 1));
+	if (!g->parse.comnds)
 		return ;
-	ft_fillcomands(general, str);
-	ft_checkquotes(general);
-	ft_iniargs(general);
-	if (general->args)
+	ft_fillcomands(g, str);
+	ft_checkquotes(g);
+	ft_iniargs(g);
+	aux = g->parse.comnds[g->parse.comndssize - 1];
+	if (g->args)
 	{
-		ft_refacttypes(general);
-		ft_expvar(general);
-		ft_refactquotes(general);
-		ft_countthings(general);
+		if (ft_strlen(aux) == 0 || aux[0] == '|' || aux[0] == '>'
+			|| aux[0] == '<')
+			printf("syntax error near unexpected token 'newline'\n");
+		ft_refacttypes(g);
+		ft_expvar(g);
+		ft_refactquotes(g);
+		ft_countthings(g);
 	}
 }

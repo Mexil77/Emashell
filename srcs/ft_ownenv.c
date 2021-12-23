@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:07:19 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/18 19:07:38 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/23 16:24:29 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_makeenv(char ***ownenv)
 {
 	char	*pwdbuf;
 
-	pwdbuf = calloc(sizeof(char), (PATH_MAX + 1));
+	pwdbuf = ft_calloc(sizeof(char), (PATH_MAX + 1));
 	getcwd(pwdbuf, PATH_MAX);
 	ownenv[0][0] = ft_strjoin("PWD=", pwdbuf);
 	ownenv[0][1] = ft_strjoin("OLDPWD=", pwdbuf);
@@ -70,7 +70,7 @@ char	**ft_ownenv(char **environ)
 
 	if (ft_splitlen(environ))
 	{
-		ownenv = calloc(sizeof(char *), (ft_splitlen(environ) + 1));
+		ownenv = ft_calloc(sizeof(char *), (ft_splitlen(environ) + 1));
 		if (!ownenv)
 			return (NULL);
 		i = -1;
@@ -79,7 +79,7 @@ char	**ft_ownenv(char **environ)
 	}
 	else
 	{
-		ownenv = calloc(sizeof(char *), 5);
+		ownenv = ft_calloc(sizeof(char *), 5);
 		if (!ownenv)
 			return (NULL);
 		ft_makeenv(&ownenv);

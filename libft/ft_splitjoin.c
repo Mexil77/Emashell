@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 15:51:36 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/11/21 16:28:40 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/23 16:22:49 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_splitjoin(char	**split, char cjoin)
 	char	*c;
 	char	*aux;
 
-	c = calloc(sizeof(char), 2);
+	c = ft_calloc(sizeof(char), 2);
 	if (!split || !split[0] || !c)
 		return (NULL);
 	join = ft_strdup(split[0]);

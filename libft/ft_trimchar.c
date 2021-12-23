@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 00:30:48 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/11/29 12:54:29 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/23 16:23:25 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_trimchar(char **str, char c)
 	size_t	j;
 	size_t	trimed;
 
-	final = calloc(sizeof(char), ft_strlen(str[0]));
+	final = ft_calloc(sizeof(char), ft_strlen(str[0]));
 	if (!str[0] || !final)
 		return ;
 	i = -1;

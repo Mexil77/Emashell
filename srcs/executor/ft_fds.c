@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 22:15:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/21 16:46:27 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/23 16:23:56 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_createfds(t_general *g)
 	size_t	i;
 	size_t	nfd;
 
-	g->fds = calloc(sizeof(int), g->nfds);
+	g->fds = ft_calloc(sizeof(int), g->nfds);
 	if (!g->fds)
 		return ;
 	nfd = 0;

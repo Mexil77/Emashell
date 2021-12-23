@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:08:59 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/18 19:09:01 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/23 16:23:48 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_remenv(t_general *g, char *remenv)
 
 	if (!ft_checkenvname(remenv) || !ft_varenvexist(g, remenv))
 		return ;
-	newenv = calloc(sizeof(char *), ft_splitlen(g->ownenv));
+	newenv = ft_calloc(sizeof(char *), ft_splitlen(g->ownenv));
 	if (!newenv)
 		return ;
 	i = -1;

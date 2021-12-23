@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:08:00 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/18 19:08:03 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/23 16:23:35 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	ft_addenv(t_general *g, char *name, char *val)
 	}
 	if (ft_modenv(g, name, &gvar))
 		return ;
-	newenv = calloc(sizeof(char *), (ft_splitlen(g->ownenv) + 2));
+	newenv = ft_calloc(sizeof(char *), (ft_splitlen(g->ownenv) + 2));
 	if (!newenv)
 		return ;
 	i = -1;
