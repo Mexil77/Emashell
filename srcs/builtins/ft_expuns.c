@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expuns.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mexil <mexil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:08:46 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/23 16:19:53 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/26 14:17:24 by mexil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ char	**ft_dropkeyvalue(char *str, int quote, int dquote)
 
 char	**ft_splitkeyvalue(t_general *g, char *str)
 {
-	size_t	size;
 	size_t	i;
 	char	**cmd;
 	char	*aux;

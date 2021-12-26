@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mexil <mexil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 18:13:22 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/23 17:38:42 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/26 14:25:30 by mexil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	ft_freegeneral(t_general *g)
 void	ft_prompt(t_general *g)
 {
 	char	*command;
-	pid_t	pid;
 
 	command = ft_calloc(sizeof(char), 64);
 	while (command && ft_strncmp(command, "exit", 4))
@@ -50,17 +49,16 @@ void	ft_prompt(t_general *g)
 				ft_executor(g);
 			ft_printgeneral(g);
 			ft_freegeneral(g);
-			system("leaks minishell > /dev/ttys001");
+			//system("leaks minishell > /dev/pts/2");
 		}
 	}
 	free(command);
 	ft_freedouble(g->ownenv);
 }
 
-int	main(int argc, char **argv)
+int	main(void)
 {
 	extern char	**environ;
-	pid_t		pid;
 	t_general	g_minishell;
 
 	g_minishell.ownenv = ft_ownenv(environ);

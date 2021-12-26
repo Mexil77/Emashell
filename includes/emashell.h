@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   emashell.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mexil <mexil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:41:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/23 17:40:04 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/26 14:42:35 by mexil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,6 @@ void	ft_makeprocess(t_general *g);
 void	ft_closeallfdspipes(t_general *g);
 int		ft_getenvpos(char *envvar, char **env);
 void	ft_builtins(t_general *g);
+void	ft_heredock(t_general *g, size_t i);
 
 #endif

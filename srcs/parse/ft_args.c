@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_args.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mexil <mexil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:09:12 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/23 17:40:55 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/26 15:32:29 by mexil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ size_t	ft_ifcheckesp(t_general *g, size_t *i, size_t ncomands, size_t *size)
 			&& g->parse.comnds[*i + 1][0] == '<'
 		&& g->parse.comnds[*i + 2][0] == '<') || (g->parse.comnds[*i][0] == ';'
 		&& g->parse.comnds[*i + 1][0] == '>'
-		&& g->parse.comnds[*i + 2][0] == '>')))
+		&& g->parse.comnds[*i + 2][0] == '>')
+		|| (g->parse.comnds[*i][0] == '|')))
 	{
 		*size += 1;
 		*i += 2;

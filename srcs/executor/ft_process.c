@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_process.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mexil <mexil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 00:49:04 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/21 16:42:32 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/26 14:58:42 by mexil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,9 @@ void	ft_dupfds(t_general *g, size_t iarg, size_t exec)
 	fdpos = 0;
 	i = -1;
 	while (++i < iarg)
-	{
 		if (g->args[i].type == 4)
 			fdpos++;
-	}
-	if (exec >= 1)
+	if (exec >= 1 && g->args[iarg].type != 8)
 		dup2(g->pipes[exec - 1][0], STDIN_FILENO);
 	if (exec < g->npipes)
 		dup2(g->pipes[exec][1], STDOUT_FILENO);
@@ -98,8 +96,12 @@ void	ft_exer(t_general *g, size_t exec)
 	ft_dupfds(g, i, exec);
 	i--;
 	while (++i < g->argssize && g->args[i].type != 5)
+	{
 		if (g->args[i].type == 3)
 			ft_checknexer(g, g->args[i].content);
+		if (g->args[i].type == 8)
+			ft_heredock(g, i);
+	}
 }
 
 void	ft_makeprocess(t_general *g)
@@ -109,7 +111,7 @@ void	ft_makeprocess(t_general *g)
 	pid_t	pid;
 
 	i = -1;
-	while (++i < g->npipes + 1)
+	while (++i < (int)g->npipes + 1)
 	{
 		pid = fork();
 		if (pid < 0)
@@ -119,6 +121,6 @@ void	ft_makeprocess(t_general *g)
 	}
 	ft_closeallfdspipes(g);
 	i = -1;
-	while (++i < g->npipes + 1)
+	while (++i < (int)g->npipes + 1)
 		waitpid(-1, &j, 0);
 }
