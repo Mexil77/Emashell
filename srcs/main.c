@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mexil <mexil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 18:13:22 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/26 14:25:30 by mexil            ###   ########.fr       */
+/*   Updated: 2021/12/27 12:19:57 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_prompt(t_general *g)
 			ft_parse(g, command);
 			if (g->args)
 				ft_executor(g);
-			ft_printgeneral(g);
+			//ft_printgeneral(g);
 			ft_freegeneral(g);
 			//system("leaks minishell > /dev/pts/2");
 		}

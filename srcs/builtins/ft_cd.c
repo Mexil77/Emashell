@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:08:17 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/23 17:42:44 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/27 12:50:13 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,31 @@ int	ft_getenvpos(char *envvar, char **env)
 	return (-1);
 }
 
+void	ft_changepwds(char ***env, char *auxoldpath, char *auxpath)
+{
+	char	**newenv;
+	size_t	i;
+
+	newenv = ft_calloc(sizeof(char *), (ft_splitlen(env[0]) + 1));
+	i = -1;
+	while (env[0][++i])
+	{
+		if (!ft_strncmp(env[0][i], "OLDPWD", 6))
+			newenv[i] = auxoldpath;
+		else if (!ft_strncmp(env[0][i], "PWD", 3))
+			newenv[i] = auxpath;
+		else
+			newenv[i] = ft_strdup(env[0][i]);
+	}
+	ft_freedouble(env[0]);
+	env[0] = newenv;
+}
+
 void	ft_cd(char	***env, char *path)
 {
 	char	*pwdbuf;
 	char	*auxpath;
+	char	*auxoldpath;
 
 	if (!path)
 	{
@@ -62,12 +83,10 @@ void	ft_cd(char	***env, char *path)
 		printf("minishell: cd: %s: No such file or directory\n", path);
 		return ;
 	}
-	auxpath = ft_strjoin("OLD", env[0][ft_getpathpos(env[0])]);
-	free (env[0][ft_getoldpathpos(env[0])]);
-	env[0][ft_getoldpathpos(env[0])] = auxpath;
-	pwdbuf = calloc(sizeof(char), (PATH_MAX + 1));
+	auxoldpath = ft_strjoin("OLD", env[0][ft_getpathpos(env[0])]);
+	pwdbuf = ft_calloc(sizeof(char), (PATH_MAX + 1));
 	getcwd(pwdbuf, PATH_MAX);
-	free (env[0][ft_getpathpos(env[0])]);
-	env[0][ft_getpathpos(env[0])] = ft_strjoin("PWD=", pwdbuf);
+	auxpath = ft_strjoin("PWD=", pwdbuf);
 	free (pwdbuf);
+	ft_changepwds(env, auxoldpath, auxpath);
 }

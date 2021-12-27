@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expuns.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mexil <mexil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:08:46 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/26 14:17:24 by mexil            ###   ########.fr       */
+/*   Updated: 2021/12/27 12:11:59 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,17 +102,14 @@ char	**ft_splitkeyvalue(t_general *g, char *str)
 
 void	ft_parsebuiltin(t_general *g, char **cmd)
 {
-	int		i;
+	size_t	i;
 
 	i = 0;
-	if (!ft_strncmp(cmd[0], "export", 7) && ft_bidstrlen(cmd) == 1)
+	if (!ft_strncmp(cmd[0], "export\0", 7) && ft_splitlen(cmd) == 1)
 		ft_printsortenv(g->ownenv);
 	else if (!ft_strncmp(cmd[0], "export", 6))
-	{
-		i = -1;
 		while (cmd[++i])
 			ft_checknewenv(g, cmd[i]);
-	}
 	else if (!ft_strncmp(cmd[0], "unset", 5))
 		while (cmd[++i])
 			ft_remenv(g, cmd[i]);

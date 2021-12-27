@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mexil <mexil@student.42.fr>                +#+  +:+       +#+         #
+#    By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/18 17:52:26 by emgarcia          #+#    #+#              #
-#    Updated: 2021/12/26 14:42:04 by mexil            ###   ########.fr        #
+#    Updated: 2021/12/27 12:03:02 by emgarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,9 @@ SRCS_PATH	=	./srcs
 OBJS_PATH	=	./objs
 INCLUDES	=	-I ./includes
 
-CFLAGS		=	-Wall -Wextra -Werror
+#CFLAGS		=	-Wall -Wextra -Werror
 #CFLAGS		=	-Wall -Wextra -Werror -lreadline
-#CFLAGS		=	-Wall -Wextra -Werror -g3 -fsanitize=address -lreadline
+CFLAGS		=	-Wall -Wextra -Werror -g3 -fsanitize=address
 
 SRCS		=	main.c ft_ownenv.c											\
 				parse/ft_args.c parse/ft_args2.c parse/ft_args3.c			\
