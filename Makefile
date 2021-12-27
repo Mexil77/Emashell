@@ -6,7 +6,7 @@
 #    By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/18 17:52:26 by emgarcia          #+#    #+#              #
-#    Updated: 2021/12/27 12:03:02 by emgarcia         ###   ########.fr        #
+#    Updated: 2021/12/27 15:28:57 by emgarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ $(OBJS_PATH)/%.o: $(SRCS_PATH)/%.c
 
 ${NAME}: ${OBJS}
 	@make -C libft
-	@${CC} ${CFLAGS} ${OBJS} ${LIBFT} -o ${NAME} -lreadline
+	${CC} ${CFLAGS} ${OBJS} ${LIBFT} -o ${NAME} -lreadline
 
 clean:
 	@cd libft ; make fclean
