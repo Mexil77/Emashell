@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 00:49:04 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/28 12:38:26 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/28 21:24:28 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	ft_dupfds(t_general *g, size_t iarg, size_t exec)
 		dup2(g->pipes[exec - 1][0], STDIN_FILENO);
 	if (exec < g->npipes && g->args[iarg].type != 8)
 		dup2(g->pipes[exec][1], STDOUT_FILENO);
-	while (g->fds && iarg < g->argssize && g->args[iarg].type != 5)
+	while (g->fds && iarg < g->argssize && g->args[iarg].type != 5
+		&& g->args[iarg].type != 8)
 	{
 		if (g->args[iarg].type == 1)
 			dup2(g->fds[fdpos++], STDIN_FILENO);
@@ -34,7 +35,6 @@ void	ft_dupfds(t_general *g, size_t iarg, size_t exec)
 			dup2(g->fds[fdpos++], STDOUT_FILENO);
 		iarg++;
 	}
-	//ft_closeallfdspipes(g);
 }
 
 char	**ft_getbins(t_general *g)
@@ -59,6 +59,7 @@ void	ft_checknexer(t_general *g, char **exe)
 	char	*path;
 	size_t	i;
 
+	ft_closeallfdspipes(g);
 	bins = ft_getbins(g);
 	if (!bins)
 		perror("Path not found.");
@@ -70,10 +71,7 @@ void	ft_checknexer(t_general *g, char **exe)
 		path = ft_strjoin(bins[i], "/");
 		ft_strownjoin(&path, exe[0]);
 		if (!access(path, X_OK))
-		{
-			ft_closeallfdspipes(g);
 			execve(path, exe, g->ownenv);
-		}
 		free (path);
 	}
 	ft_freedouble(bins);
@@ -103,19 +101,27 @@ void	ft_makeprocess(t_general *g)
 {
 	int		i;
 	int		j;
+	size_t	k;
 	pid_t	pid;
 
 	i = -1;
 	while (++i < (int)g->npipes + 1)
 	{
+		k = 0;
 		pid = fork();
 		if (pid < 0)
 			return ;
 		if (!pid)
 			ft_exer(g, i);
+		else
+		{
+			ft_countpipes(g, &k, i);
+			if (g->args[k].type == 8)
+				waitpid(pid, &j, 0);
+		}
 	}
 	ft_closeallfdspipes(g);
 	i = -1;
-	while (++i < (int)g->npipes + 1)
+	while (++i < (int)g->npipes + 1 - ft_nheredocks(g))
 		waitpid(-1, &j, 0);
 }
