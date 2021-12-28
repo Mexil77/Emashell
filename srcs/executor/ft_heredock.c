@@ -6,13 +6,20 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 12:45:14 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/27 17:49:10 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/28 13:07:48 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <emashell.h>
 
-void	ft_heredock(t_general *g, size_t i)
+void	ft_openfds(t_general *g, int tmp, size_t exec)
+{
+	dup2(tmp, STDIN_FILENO);
+	if (g->npipes)
+		dup2(g->pipes[exec][1], STDOUT_FILENO);
+}
+
+void	ft_heredock(t_general *g, size_t i, size_t exec)
 {
 	char	*line;
 	char	*eof;
@@ -32,10 +39,11 @@ void	ft_heredock(t_general *g, size_t i)
 	}
 	close(tmp);
 	tmp = open("tmp", O_CREAT | O_RDWR, 0644);
-	dup2(tmp, STDIN_FILENO);
+	ft_openfds(g, tmp, exec);
 	close(tmp);
 	free(line);
 	unlink("tmp");
+	ft_closeallfdspipes(g);
 	if (i + 2 >= g->argssize || g->args[i + 2].type == 5)
 		exit(0);
 }

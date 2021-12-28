@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:41:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/27 17:01:21 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/28 12:38:59 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ void	ft_makeprocess(t_general *g);
 void	ft_closeallfdspipes(t_general *g);
 int		ft_getenvpos(char *envvar, char **env);
 void	ft_builtins(t_general *g);
-void	ft_heredock(t_general *g, size_t i);
+void	ft_heredock(t_general *g, size_t i, size_t exec);
+size_t	ft_isbuiltin(char *str);
+size_t	ft_countpipes(t_general *g, size_t *i, size_t exec);
 
 #endif

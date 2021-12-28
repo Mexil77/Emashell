@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 00:49:04 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/27 19:02:55 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/28 12:38:26 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_dupfds(t_general *g, size_t iarg, size_t exec)
 			fdpos++;
 	if (exec >= 1 && g->args[iarg].type != 8)
 		dup2(g->pipes[exec - 1][0], STDIN_FILENO);
-	if (exec < g->npipes)
+	if (exec < g->npipes && g->args[iarg].type != 8)
 		dup2(g->pipes[exec][1], STDOUT_FILENO);
 	while (g->fds && iarg < g->argssize && g->args[iarg].type != 5)
 	{
@@ -34,7 +34,7 @@ void	ft_dupfds(t_general *g, size_t iarg, size_t exec)
 			dup2(g->fds[fdpos++], STDOUT_FILENO);
 		iarg++;
 	}
-	ft_closeallfdspipes(g);
+	//ft_closeallfdspipes(g);
 }
 
 char	**ft_getbins(t_general *g)
@@ -62,9 +62,7 @@ void	ft_checknexer(t_general *g, char **exe)
 	bins = ft_getbins(g);
 	if (!bins)
 		perror("Path not found.");
-	if (!ft_strncmp(exe[0], "unset", 4)
-		|| !ft_strncmp(exe[0], "export", 6)
-		|| !ft_strncmp(exe[0], "cd", 2))
+	if (ft_isbuiltin(exe[0]))
 		exit(0);
 	i = -1;
 	while (++i < ft_splitlen(bins))
@@ -72,7 +70,10 @@ void	ft_checknexer(t_general *g, char **exe)
 		path = ft_strjoin(bins[i], "/");
 		ft_strownjoin(&path, exe[0]);
 		if (!access(path, X_OK))
+		{
+			ft_closeallfdspipes(g);
 			execve(path, exe, g->ownenv);
+		}
 		free (path);
 	}
 	ft_freedouble(bins);
@@ -85,14 +86,8 @@ void	ft_exer(t_general *g, size_t exec)
 	size_t	i;
 	size_t	pipes;
 
-	pipes = -1;
 	i = 0;
-	while (++pipes < exec)
-	{
-		while (i < g->argssize && g->args[i].type != 5)
-			i++;
-		i++;
-	}
+	pipes = ft_countpipes(g, &i, exec);
 	ft_dupfds(g, i, exec);
 	i--;
 	while (++i < g->argssize && g->args[i].type != 5)
@@ -100,7 +95,7 @@ void	ft_exer(t_general *g, size_t exec)
 		if (g->args[i].type == 3)
 			ft_checknexer(g, g->args[i].content);
 		if (g->args[i].type == 8)
-			ft_heredock(g, i);
+			ft_heredock(g, i, exec);
 	}
 }
 
