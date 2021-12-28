@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 12:45:14 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/28 13:07:48 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/28 18:04:17 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_openfds(t_general *g, int tmp, size_t exec)
 {
 	dup2(tmp, STDIN_FILENO);
-	if (g->npipes)
+	if (g->npipes > exec)
 		dup2(g->pipes[exec][1], STDOUT_FILENO);
 }
 
