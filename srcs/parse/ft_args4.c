@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:09:48 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/21 14:30:22 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/28 17:37:03 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,14 @@ char	*ft_getenv(char *str, size_t *last, size_t *j, t_general *g)
 	str++;
 	ft_addvars(last, j);
 	i = -1;
-	if (str[i + 1] == '?')
+	if (str[i + 1] && str[i + 1] == '?')
 	{
 		ft_addvars(last, j);
 		return (ft_itoa(0));
 	}
 	while (ft_isalpha(str[++i]))
 		ft_addvars(last, j);
+	*j -= 1;
 	if (!i && str[i] != '\"' && str[i] != '\'')
 		return (ft_strdup("$"));
 	else
@@ -65,20 +66,21 @@ char	*ft_getenv(char *str, size_t *last, size_t *j, t_general *g)
 	return (ret);
 }
 
-void	ft_joinenv(char **str, t_general *g)
+void	ft_joinenv(char **str, t_general *g, size_t last)
 {
 	char	*aux;
 	char	*line;
 	size_t	j;
-	size_t	last;
 
-	last = 0;
 	j = -1;
+	line = NULL;
 	while (str[0][++j])
 	{
 		if (str[0][j] == '$')
 		{
-			line = ft_substr(str[0], last, j);
+			aux = ft_substr(str[0], last, j - last);
+			ft_strownjoin(&line, aux);
+			free (aux);
 			last = j;
 			aux = ft_getenv(&str[0][j], &last, &j, g);
 			ft_strownjoin(&line, aux);
@@ -105,10 +107,10 @@ void	ft_expvar(t_general *g)
 		while (g->args[i].content[++j])
 		{
 			aux = g->args[i].content[j];
-			if (ft_findchar(aux, '$') && g->args[i - 1].type != 8)
+			if (!i || (ft_findchar(aux, '$') && g->args[i - 1].type != 8))
 				if ((ft_getposition(aux, '\"') < ft_getposition(aux, '\''))
 					|| (ft_getposition(aux, '\"') == ft_getposition(aux, '\'')))
-					ft_joinenv(&g->args[i].content[j], g);
+					ft_joinenv(&g->args[i].content[j], g, 0);
 		}
 	}
 }
