@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:08:46 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/27 12:11:59 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/30 12:32:13 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,10 @@ void	ft_parsebuiltin(t_general *g, char **cmd)
 	i = 0;
 	if (!ft_strncmp(cmd[0], "export\0", 7) && ft_splitlen(cmd) == 1)
 		ft_printsortenv(g->ownenv);
-	else if (!ft_strncmp(cmd[0], "export", 6))
+	else if (!ft_strncmp(cmd[0], "export\0", 7))
 		while (cmd[++i])
 			ft_checknewenv(g, cmd[i]);
-	else if (!ft_strncmp(cmd[0], "unset", 5))
+	else if (!ft_strncmp(cmd[0], "unset\0", 7))
 		while (cmd[++i])
 			ft_remenv(g, cmd[i]);
 }
