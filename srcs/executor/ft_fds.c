@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 22:15:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/23 16:23:56 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/30 12:16:20 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ void	ft_createfds(t_general *g)
 			else if (g->args[i - 1].type == 2)
 				g->fds[nfd++] = open(g->args[i].content[0],
 						O_CREAT | O_RDWR | O_TRUNC, 0644);
+			else if (g->args[i - 1].type == 7)
+				g->fds[nfd++] = open(g->args[i].content[0],
+						O_CREAT | O_RDWR | O_APPEND, 0644);
 		}
 	}
 }
