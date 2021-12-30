@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 12:45:14 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/28 21:24:56 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/30 15:56:36 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ void	ft_heredock(t_general *g, size_t i, size_t exec)
 
 	tmp = open("tmp", O_CREAT | O_RDWR, 0644);
 	eof = g->args[i + 1].content[0];
-	line = NULL;
-	while (ft_strncmp(line, eof, ft_strlen(eof))
-		|| ft_strlen(eof) != ft_strlen(line))
+	line = ft_strdup("");
+	while ((ft_strncmp(line, eof, ft_strlen(eof))
+			|| ft_strlen(eof) != ft_strlen(line)) && line)
 	{
 		write(tmp, line, ft_strlen(line));
-		if (line)
+		if (line && ft_strncmp(line, "", 1))
 			write(tmp, "\n", 1);
 		free(line);
 		line = readline(BEGIN"> "CLOSE);

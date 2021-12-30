@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 18:13:22 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/30 13:38:40 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/30 15:48:03 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	main(void)
 	extern char	**environ;
 	t_general	g_minishell;
 
+	ft_signals();
 	g_minishell.ownenv = ft_ownenv(environ);
 	ft_prompt(&g_minishell);
 	printf("exit\n");
