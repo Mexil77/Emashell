@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:07:19 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/23 16:24:29 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/30 13:29:42 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	ft_printsortenv(char **ownenv)
 	while (sort[++i])
 		ft_printformat(sort[i]);
 	ft_freedouble(sort);
+	exit (0);
 }
 
 void	ft_makeenv(char ***ownenv)

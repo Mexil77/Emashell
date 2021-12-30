@@ -6,17 +6,16 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 12:21:26 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/28 12:36:34 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/30 13:26:38 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <emashell.h>
 
-size_t	ft_isbuiltin(char *str)
+size_t	ft_isinvalidbuiltin(char **cmd)
 {
-	if (!ft_strncmp(str, "unset", 4)
-		|| !ft_strncmp(str, "export", 6)
-		|| !ft_strncmp(str, "cd", 2))
+	if (!ft_strncmp(cmd[0], "unset\0", 6) || !ft_strncmp(cmd[0], "cd\0", 3)
+		|| (!ft_strncmp(cmd[0], "export\0", 7) && ft_splitlen(cmd) > 1))
 		return (1);
 	return (0);
 }

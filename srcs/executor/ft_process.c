@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 00:49:04 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/28 21:24:28 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/30 13:34:33 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,10 @@ void	ft_checknexer(t_general *g, char **exe)
 	bins = ft_getbins(g);
 	if (!bins)
 		perror("Path not found.");
-	if (ft_isbuiltin(exe[0]))
+	if (ft_isinvalidbuiltin(exe))
 		exit(0);
+	else if (!ft_strncmp(exe[0], "export\0", 7) && ft_splitlen(exe) == 1)
+		ft_parsebuiltin(g, exe);
 	i = -1;
 	while (++i < ft_splitlen(bins))
 	{
@@ -75,7 +77,7 @@ void	ft_checknexer(t_general *g, char **exe)
 		free (path);
 	}
 	ft_freedouble(bins);
-	printf("Commmand ->not found.\n");
+	printf("Commmand -> %s not found.\n", exe[0]);
 	exit(0);
 }
 
