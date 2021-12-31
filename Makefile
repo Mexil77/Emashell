@@ -6,7 +6,7 @@
 #    By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/18 17:52:26 by emgarcia          #+#    #+#              #
-#    Updated: 2021/12/30 13:46:19 by emgarcia         ###   ########.fr        #
+#    Updated: 2021/12/31 14:13:12 by emgarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,12 @@ RM			=	rm -rf
 
 SRCS_PATH	=	./srcs
 OBJS_PATH	=	./objs
-INCLUDES	=	-I ./includes
+INCLUDES	=	-I ./includes -I /Users/$(USER)/.brew/opt/readline/include
+LDFLAGS		=	-L /Users/$(USER)/.brew/opt/readline/lib
 
-#CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror
 #CFLAGS		=	-Wall -Wextra -Werror -lreadline
-CFLAGS		=	-Wall -Wextra -Werror -g3 -fsanitize=address
+#CFLAGS		=	-Wall -Wextra -Werror -g3 -fsanitize=address
 
 SRCS		=	main.c ft_ownenv.c											\
 				parse/ft_args.c parse/ft_args2.c parse/ft_args3.c			\
@@ -30,6 +31,7 @@ SRCS		=	main.c ft_ownenv.c											\
 				parse/ft_printg.c											\
 				builtins/ft_addenv.c builtins/ft_cd.c builtins/ft_expuns.c	\
 				builtins/ft_remenv.c builtins/ft_builtins.c					\
+				builtins/ft_echo.c builtins/ft_aux.c						\
 				executor/ft_executor.c executor/ft_fds.c					\
 				executor/ft_pipes.c executor/ft_process.c					\
 				executor/ft_heredock.c executor/ft_aux.c					\
@@ -48,7 +50,7 @@ $(OBJS_PATH)/%.o: $(SRCS_PATH)/%.c
 
 ${NAME}: ${OBJS}
 	@make -C libft
-	${CC} ${CFLAGS} ${OBJS} ${LIBFT} -o ${NAME} -lreadline
+	${CC} ${CFLAGS} ${OBJS} ${LIBFT} -o ${NAME} -lreadline ${LDFLAGS}
 
 clean:
 	@cd libft ; make fclean

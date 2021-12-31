@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_signals.c                                       :+:      :+:    :+:   */
+/*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/30 13:44:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/31 13:27:40 by emgarcia         ###   ########.fr       */
+/*   Created: 2021/12/31 13:52:17 by emgarcia          #+#    #+#             */
+/*   Updated: 2021/12/31 14:10:41 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <emashell.h>
 
-void	ft_stopsignal(int sig)
+void	ft_echo(char **cmd)
 {
-	if (sig == 2)
-	{
-		write(STDOUT_FILENO, "\n", 1);
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-	}
-}
+	size_t	i;
+	size_t	backn;
 
-void	ft_signals(void)
-{
-	signal(SIGINT, ft_stopsignal);
-	signal(SIGQUIT, SIG_IGN);
+	backn = 1;
+	if (cmd[1] && ft_strlen(cmd[1]) > 1 && !ft_strncmp(cmd[1], "-n\0", 3))
+	{
+		i = 1;
+		backn = 0;
+	}
+	else
+		i = 0;
+	while (cmd[++i])
+	{
+		printf("%s", cmd[i]);
+		if (i < ft_splitlen(cmd) - 1)
+			printf(" ");
+	}
+	if (backn == 1)
+		printf("\n");
 }

@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_signals.c                                       :+:      :+:    :+:   */
+/*   ft_aux.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/30 13:44:27 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/31 13:27:40 by emgarcia         ###   ########.fr       */
+/*   Created: 2021/12/31 14:05:41 by emgarcia          #+#    #+#             */
+/*   Updated: 2021/12/31 14:13:42 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <emashell.h>
 
-void	ft_stopsignal(int sig)
+size_t	ft_childbuiltin(t_general *g, char **exe)
 {
-	if (sig == 2)
+	if (ft_isinvalidbuiltin(exe))
+		return (1);
+	else if (!ft_strncmp(exe[0], "export\0", 7) && ft_splitlen(exe) == 1)
 	{
-		write(STDOUT_FILENO, "\n", 1);
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
+		ft_parsebuiltin(g, exe);
+		return (1);
 	}
-}
-
-void	ft_signals(void)
-{
-	signal(SIGINT, ft_stopsignal);
-	signal(SIGQUIT, SIG_IGN);
+	else if (!ft_strncmp(exe[0], "echo\0", 5))
+	{
+		ft_echo(exe);
+		return (1);
+	}
+	return (0);
 }
