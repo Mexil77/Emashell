@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 12:45:14 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/30 15:56:36 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/31 17:09:37 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,22 @@ void	ft_openfds(t_general *g, int tmp, size_t exec, size_t iarg)
 	}
 }
 
+void	ft_restorvalues(t_general *g, int tmp)
+{
+	close(tmp);
+	unlink(".tmp");
+	ft_closeallfdspipes(g);
+	ft_signals();
+}
+
 void	ft_heredock(t_general *g, size_t i, size_t exec)
 {
 	char	*line;
 	char	*eof;
 	int		tmp;
 
-	tmp = open("tmp", O_CREAT | O_RDWR, 0644);
+	ft_sigheredock();
+	tmp = open(".tmp", O_CREAT | O_RDWR, 0644);
 	eof = g->args[i + 1].content[0];
 	line = ft_strdup("");
 	while ((ft_strncmp(line, eof, ft_strlen(eof))
@@ -54,12 +63,10 @@ void	ft_heredock(t_general *g, size_t i, size_t exec)
 		line = readline(BEGIN"> "CLOSE);
 	}
 	close(tmp);
-	tmp = open("tmp", O_CREAT | O_RDWR, 0644);
+	tmp = open(".tmp", O_CREAT | O_RDWR, 0644);
 	ft_openfds(g, tmp, exec, i);
-	close(tmp);
 	free(line);
-	unlink("tmp");
-	ft_closeallfdspipes(g);
+	ft_restorvalues(g, tmp);
 	if (i + 2 >= g->argssize || g->args[i + 2].type == 5)
 		exit(0);
 }

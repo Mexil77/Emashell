@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:41:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/31 16:59:08 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/31 17:04:24 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,6 @@ size_t	ft_childbuiltin(t_general *g, char **exe);
 size_t	ft_returnbuiltinvalue(char **exe);
 
 void	ft_signals(void);
+void	ft_sigheredock(void);
 
 #endif
