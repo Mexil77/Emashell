@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:08:59 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/30 12:51:40 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/31 16:56:00 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ void	ft_remenv(t_general *g, char *remenv)
 	size_t	j;
 
 	if (!ft_checkenvname(remenv) || !ft_varenvexist(g, remenv))
+	{
+		printf("unset: `%s': not a valid identifier\n", remenv);
 		return ;
+	}
 	newenv = ft_calloc(sizeof(char *), ft_splitlen(g->ownenv));
 	if (!newenv)
 		return ;

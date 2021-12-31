@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 00:49:04 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/31 15:21:01 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/31 16:59:16 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_checknexer(t_general *g, char **exe)
 	if (!bins)
 		perror("Path not found.");
 	if (ft_childbuiltin(g, exe))
-		exit(0);
+		exit(ft_returnbuiltinvalue(exe));
 	i = -1;
 	while (++i < ft_splitlen(bins))
 	{
