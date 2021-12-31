@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 00:49:04 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/31 14:08:27 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/31 15:21:01 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	ft_checknexer(t_general *g, char **exe)
 	}
 	ft_freedouble(bins);
 	printf("Commmand -> %s not found.\n", exe[0]);
-	exit(0);
+	exit(127);
 }
 
 void	ft_exer(t_general *g, size_t exec)
@@ -108,20 +108,19 @@ void	ft_makeprocess(t_general *g)
 	while (++i < (int)g->npipes + 1)
 	{
 		k = 0;
+		ft_countpipes(g, &k, i);
 		pid = fork();
 		if (pid < 0)
 			return ;
 		if (!pid)
 			ft_exer(g, i);
 		else
-		{
-			ft_countpipes(g, &k, i);
 			if (g->args[k].type == 8)
 				waitpid(pid, &j, 0);
-		}
 	}
 	ft_closeallfdspipes(g);
 	i = -1;
 	while (++i < (int)g->npipes + 1 - ft_nheredocks(g))
 		waitpid(-1, &j, 0);
+	g_piperet = j % 255;
 }

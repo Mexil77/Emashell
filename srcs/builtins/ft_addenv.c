@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:08:00 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/23 16:23:35 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/31 15:10:07 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,12 @@ void	ft_checknewenv(t_general *g, char *newenv)
 	ultima = i + 1;
 	val = ft_substr(newenv, ultima, i - ultima);
 	ultima = i + 1;
+	g_piperet = 0;
 	if (!ft_checkenvname(name) || !ft_strlen(name))
+	{
 		printf("export: `%s%c%s': not a valid identifier\n", name, '=', val);
+		g_piperet = 1;
+	}
 	else
 		ft_addenv(g, name, val);
 	free (name);

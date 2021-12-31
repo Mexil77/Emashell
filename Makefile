@@ -6,7 +6,7 @@
 #    By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/18 17:52:26 by emgarcia          #+#    #+#              #
-#    Updated: 2021/12/31 14:13:12 by emgarcia         ###   ########.fr        #
+#    Updated: 2021/12/31 14:22:16 by emgarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,9 @@ OBJS_PATH	=	./objs
 INCLUDES	=	-I ./includes -I /Users/$(USER)/.brew/opt/readline/include
 LDFLAGS		=	-L /Users/$(USER)/.brew/opt/readline/lib
 
-CFLAGS		=	-Wall -Wextra -Werror
+#CFLAGS		=	-Wall -Wextra -Werror
 #CFLAGS		=	-Wall -Wextra -Werror -lreadline
-#CFLAGS		=	-Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -g3 -fsanitize=address
 
 SRCS		=	main.c ft_ownenv.c											\
 				parse/ft_args.c parse/ft_args2.c parse/ft_args3.c			\

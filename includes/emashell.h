@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:41:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/31 14:07:55 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/31 14:28:44 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ typedef struct s_general {
 	t_parse	parse;
 	size_t	argssize;
 }			t_general;
+
+int	g_piperet;
 
 void	ft_freedouble(char **split);
 size_t	ft_contsp(t_general *g, size_t i);

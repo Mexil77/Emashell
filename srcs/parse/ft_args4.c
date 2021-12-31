@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:09:48 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/28 17:37:03 by emgarcia         ###   ########.fr       */
+/*   Updated: 2021/12/31 15:02:08 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ char	*ft_getenv(char *str, size_t *last, size_t *j, t_general *g)
 	i = -1;
 	if (str[i + 1] && str[i + 1] == '?')
 	{
-		ft_addvars(last, j);
-		return (ft_itoa(0));
+		*last += 1;
+		return (ft_itoa(g_piperet));
 	}
 	while (ft_isalpha(str[++i]))
 		ft_addvars(last, j);
