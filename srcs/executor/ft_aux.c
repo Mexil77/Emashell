@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 12:21:26 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/30 13:26:38 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/03 19:14:25 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 size_t	ft_isinvalidbuiltin(char **cmd)
 {
-	if (!ft_strncmp(cmd[0], "unset\0", 6) || !ft_strncmp(cmd[0], "cd\0", 3)
+	if (!ft_strncmp(cmd[0], "exit\0", 5) || !ft_strncmp(cmd[0], "unset\0", 6)
+		|| !ft_strncmp(cmd[0], "cd\0", 3)
 		|| (!ft_strncmp(cmd[0], "export\0", 7) && ft_splitlen(cmd) > 1))
 		return (1);
 	return (0);

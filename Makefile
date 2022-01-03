@@ -6,7 +6,7 @@
 #    By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/18 17:52:26 by emgarcia          #+#    #+#              #
-#    Updated: 2022/01/03 17:20:54 by emgarcia         ###   ########.fr        #
+#    Updated: 2022/01/03 19:08:15 by emgarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ SRCS		=	main.c ft_ownenv.c											\
 				parse/ft_printg.c											\
 				builtins/ft_addenv.c builtins/ft_cd.c builtins/ft_expuns.c	\
 				builtins/ft_remenv.c builtins/ft_builtins.c					\
-				builtins/ft_echo.c builtins/ft_aux.c						\
+				builtins/ft_echo.c builtins/ft_aux.c builtins/ft_pwd.c		\
+				builtins/ft_env.c											\
 				executor/ft_executor.c executor/ft_fds.c					\
 				executor/ft_pipes.c executor/ft_process.c					\
 				executor/ft_heredock.c executor/ft_aux.c					\

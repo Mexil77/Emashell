@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:41:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/01/03 18:36:43 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/03 19:07:47 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ size_t	ft_countpipes(t_general *g, size_t *i, size_t exec);
 int		ft_nheredocks(t_general *g);
 void	ft_echo(char **cmd);
 size_t	ft_childbuiltin(t_general *g, char **exe);
+void	ft_pwd(void);
+void	ft_env(char **ownenv);
 
 void	ft_signals(void);
 void	ft_sigheredock(void);

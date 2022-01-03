@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/31 14:05:41 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/01/03 18:36:49 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/03 19:10:41 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,16 @@ size_t	ft_childbuiltin(t_general *g, char **exe)
 	else if (!ft_strncmp(exe[0], "echo\0", 5))
 	{
 		ft_echo(exe);
+		return (1);
+	}
+	else if (!ft_strncmp(exe[0], "pwd\0", 4))
+	{
+		ft_pwd();
+		return (1);
+	}
+	else if (!ft_strncmp(exe[0], "env\0", 4))
+	{
+		ft_env(g->ownenv);
 		return (1);
 	}
 	return (0);
