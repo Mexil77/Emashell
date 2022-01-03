@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:09:55 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/23 17:39:49 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/03 13:00:32 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ size_t	ft_spchar(char c)
 {
 	if (c == '|' || c == '>' || c == '<' || c == ';')
 		return (1);
+	return (0);
+}
+
+size_t	ft_errorfinalarg(void)
+{
+	printf("syntax error near unexpected token 'newline'\n");
 	return (0);
 }
 

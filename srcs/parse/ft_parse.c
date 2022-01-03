@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:12:07 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/23 17:24:16 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/03 13:02:05 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,9 +121,6 @@ void	ft_parse(t_general *g, char *str)
 	aux = g->parse.comnds[g->parse.comndssize - 1];
 	if (g->args)
 	{
-		if (ft_strlen(aux) == 0 || aux[0] == '|' || aux[0] == '>'
-			|| aux[0] == '<')
-			printf("syntax error near unexpected token 'newline'\n");
 		ft_refacttypes(g);
 		ft_expvar(g);
 		ft_refactquotes(g);
