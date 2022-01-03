@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:41:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/31 17:04:24 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/03 13:00:49 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ char	**ft_dropkeyvalue(char *str, int quote, int dquote);
 size_t	ft_ignorespace(size_t i, char *str);
 char	*ft_dropspace(char *str);
 size_t	ft_isspar(char *str);
+void	ft_freegeneral(t_general *g);
+size_t	ft_errorfinalarg(void);
 
 void	ft_executor(t_general *g);
 void	ft_createfds(t_general *g);
