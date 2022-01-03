@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:11:35 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/21 14:26:53 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/03 18:41:54 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	ft_freedouble(char **split)
 {
 	size_t	i;
 
+	if (!split)
+		return ;
 	i = -1;
 	while (split[++i])
 		free(split[i]);

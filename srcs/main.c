@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 18:13:22 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/01/03 18:00:01 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/03 18:32:19 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_prompt(t_general *g)
 		{
 			ft_inigeneral(g);
 			ft_parse(g, command);
-		//	ft_printgeneral(g);
+			//ft_printgeneral(g);
 			if (g->args)
 				ft_executor(g);
 			ft_freegeneral(g);

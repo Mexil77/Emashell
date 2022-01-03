@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:12:07 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/01/03 18:20:39 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/03 18:32:25 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,6 @@ void	ft_parse(t_general *g, char *str)
 	if (!g->parse.comnds || !g->parse.comndssize)
 		return ;
 	ft_fillcomands(g, str);
-	ft_printgeneral(g);
 	ft_checkquotes(g);
 	ft_iniargs(g);
 	if (g->args)

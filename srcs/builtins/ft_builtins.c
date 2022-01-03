@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 18:00:15 by emgarcia          #+#    #+#             */
-/*   Updated: 2021/12/30 13:16:13 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/03 18:32:33 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	ft_builtins(t_general *g)
 {
 	size_t	i;
 
+	if (g->npipes)
+		return ;
 	i = -1;
 	while (++i < g->argssize)
 	{
