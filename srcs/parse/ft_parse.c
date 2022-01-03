@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:12:07 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/01/03 13:02:05 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/03 13:24:46 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,6 @@ void	ft_fillcomands(t_general *g, char *str)
 
 void	ft_parse(t_general *g, char *str)
 {
-	char	*aux;
-
 	ft_comndssize(g, str);
 	g->parse.comnds = ft_calloc(sizeof(char *),
 			(g->parse.comndssize + 1));
@@ -118,7 +116,6 @@ void	ft_parse(t_general *g, char *str)
 	ft_fillcomands(g, str);
 	ft_checkquotes(g);
 	ft_iniargs(g);
-	aux = g->parse.comnds[g->parse.comndssize - 1];
 	if (g->args)
 	{
 		ft_refacttypes(g);
