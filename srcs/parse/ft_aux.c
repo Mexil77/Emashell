@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:09:55 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/01/03 13:00:32 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/03 18:00:14 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ size_t	ft_spchar(char c)
 	return (0);
 }
 
-size_t	ft_errorfinalarg(void)
+size_t	ft_errormsg(char *str)
 {
-	printf("syntax error near unexpected token 'newline'\n");
+	printf("%s", str);
 	return (0);
 }
 
@@ -47,6 +47,9 @@ size_t	ft_error(size_t ncomands, size_t i, char **cmds)
 
 void	ft_inigeneral(t_general *general)
 {
+	general->quot = 1;
+	general->dquot = 1;
+	general->parse.comand = 1;
 	general->npipes = 0;
 	general->nfds = 0;
 	general->nexecutables = 0;
@@ -55,9 +58,6 @@ void	ft_inigeneral(t_general *general)
 	general->args = NULL;
 	general->fds = NULL;
 	general->pipes = NULL;
-	general->quot = 1;
-	general->dquot = 1;
-	general->parse.comand = 1;
 	general->parse.comnds = NULL;
 	general->parse.comndssize = 0;
 	general->argssize = 0;
