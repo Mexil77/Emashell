@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 00:49:04 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/01/03 18:49:10 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/04 12:14:01 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,17 @@ void	ft_dupfds(t_general *g, size_t iarg, size_t exec)
 	while (g->fds && iarg < g->argssize && g->args[iarg].type != 5
 		&& g->args[iarg].type != 8)
 	{
-		if (g->args[iarg].type == 1)
-			dup2(g->fds[fdpos++], STDIN_FILENO);
-		else if (g->args[iarg].type == 2 || g->args[iarg].type == 7)
-			dup2(g->fds[fdpos++], STDOUT_FILENO);
+		if (g->args[iarg].type == 1 || g->args[iarg].type == 2
+			|| g->args[iarg].type == 7)
+		{
+			if (g->fds[fdpos] == -1)
+				perror("No such file or directory");
+			else if (g->args[iarg].type == 1)
+				dup2(g->fds[fdpos], STDIN_FILENO);
+			else
+				dup2(g->fds[fdpos], STDOUT_FILENO);
+			fdpos++;
+		}
 		iarg++;
 	}
 }
@@ -98,6 +105,7 @@ void	ft_exer(t_general *g, size_t exec)
 		if (g->args[i].type == 8)
 			ft_heredock(g, i, exec);
 	}
+	exit(0);
 }
 
 void	ft_makeprocess(t_general *g)
