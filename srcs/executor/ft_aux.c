@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 12:21:26 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/01/04 12:38:49 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/04 13:06:39 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,19 @@
 
 size_t	ft_validatefds(t_general *g, size_t *iarg, size_t *fdpos)
 {
+	char	*aux;
+
 	if (g->args[*iarg].type == 1 || g->args[*iarg].type == 2
 		|| g->args[*iarg].type == 7)
 	{
 		if (g->fds[*fdpos] == -1)
-			return (ft_errormsg("No such file or directory\n"));
+		{
+			aux = ft_strjoin(g->args[*iarg + 1].content[0],
+					": No such file or directory\n");
+			write(2, aux, ft_strlen(aux));
+			free (aux);
+			return (0);
+		}
 		else if (g->args[*iarg].type == 1)
 			dup2(g->fds[*fdpos], STDIN_FILENO);
 		else
