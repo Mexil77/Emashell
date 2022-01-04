@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:41:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/01/04 12:38:57 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/04 16:13:14 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ size_t	ft_ignorespace(size_t i, char *str);
 char	*ft_dropspace(char *str);
 size_t	ft_isspar(char *str);
 void	ft_freegeneral(t_general *g);
-size_t	ft_errormsg(char *str);
+size_t	ft_errormsg(char *str, size_t ret);
 
 void	ft_executor(t_general *g);
 void	ft_createfds(t_general *g);
@@ -111,6 +111,7 @@ size_t	ft_childbuiltin(t_general *g, char **exe);
 void	ft_pwd(void);
 void	ft_env(char **ownenv);
 size_t	ft_validatefds(t_general *g, size_t *iarg, size_t *fdpos);
+char	**ft_findallcontent(t_general *g, size_t i);
 
 void	ft_signals(void);
 void	ft_sigheredock(void);

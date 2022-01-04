@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:09:12 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/01/04 13:00:53 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/04 16:15:34 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ size_t	ft_argssize(t_general *g)
 	}
 	aux = g->parse.comnds[g->parse.comndssize - 1];
 	if (aux[0] == '|' || aux[0] == '>' || aux[0] == '<')
-		return (ft_errormsg("syntax error near unexpected token 'newline'\n"));
+		return (ft_errormsg("syntax error near unexpected token 'newline'\n",
+				0));
 	g->argssize = argssize;
 	return (1);
 }

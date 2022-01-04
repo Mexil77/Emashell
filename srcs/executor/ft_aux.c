@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 12:21:26 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/01/04 13:06:39 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/04 14:27:02 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,38 @@ size_t	ft_countpipes(t_general *g, size_t *i, size_t exec)
 		(*i)++;
 	}
 	return (pipes);
+}
+
+void	ft_splitownjoin(char ***split1, char **split2)
+{
+	size_t	i;
+	size_t	j;
+	char	**finalsplit;
+
+	if (!split1[0] && !split2)
+		return ;
+	finalsplit = ft_calloc(sizeof(char *),
+			(ft_splitlen(split1[0]) + ft_splitlen(split2) + 1));
+	if (!finalsplit)
+		return ;
+	j = 0;
+	i = 0;
+	while (split1[0][i])
+		finalsplit[j++] = ft_strdup(split1[0][i++]);
+	i = 0;
+	while (split2[i])
+		finalsplit[j++] = ft_strdup(split2[i++]);
+	ft_freedouble(split1[0]);
+	split1[0] = finalsplit;
+}
+
+char	**ft_findallcontent(t_general *g, size_t i)
+{
+	char	**ret;
+
+	ret = ft_calloc(sizeof(char *), 1);
+	while (++i < g->argssize && g->args[i].type != 5)
+		if (g->args[i].type == 3)
+			ft_splitownjoin(&ret, g->args[i].content);
+	return (ret);
 }

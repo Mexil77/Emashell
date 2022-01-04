@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 00:49:04 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/01/04 12:43:17 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/04 16:41:47 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,25 @@ size_t	ft_dupfds(t_general *g, size_t iarg, size_t exec)
 
 char	**ft_getbins(t_general *g)
 {
+	char	**ret;
+	char	**auxdoble;
 	char	*paths;
 	char	*aux;
-	int		pathpos;
+	size_t	i;
 
-	pathpos = ft_getenvpos("PATH", g->ownenv);
-	if (pathpos < 0)
+	if (ft_getenvpos("PATH", g->ownenv) < 0)
 		return (NULL);
-	paths = ft_strdup(g->ownenv[pathpos]);
+	paths = ft_strdup(g->ownenv[ft_getenvpos("PATH", g->ownenv)]);
 	aux = paths;
 	paths = ft_substr(paths, 5, ft_strlen(paths));
 	free(aux);
-	return (ft_split(paths, ':'));
+	auxdoble = ft_split(paths, ':');
+	ret = ft_calloc(sizeof(char *), (ft_splitlen(auxdoble) + 1));
+	i = -1;
+	while (auxdoble[++i])
+		ret[i] = ft_strjoin(auxdoble[i], "/");
+	ft_freedouble(auxdoble);
+	return (ret);
 }
 
 void	ft_checknexer(t_general *g, char **exe)
@@ -60,15 +67,13 @@ void	ft_checknexer(t_general *g, char **exe)
 		exit(0);
 	bins = ft_getbins(g);
 	if (!bins)
-	{
-		printf("Path not found.\n");
-		exit(127);
-	}
+		exit(ft_errormsg("Path not found.\n", 127));
+	if (!access(exe[0], X_OK))
+		execve(exe[0], exe, g->ownenv);
 	i = -1;
 	while (++i < ft_splitlen(bins))
 	{
-		path = ft_strjoin(bins[i], "/");
-		ft_strownjoin(&path, exe[0]);
+		path = ft_strjoin(bins[i], exe[0]);
 		if (!access(path, X_OK))
 			execve(path, exe, g->ownenv);
 		free (path);
@@ -82,6 +87,7 @@ void	ft_exer(t_general *g, size_t exec)
 {
 	size_t	i;
 	size_t	pipes;
+	char	**allcontent;
 
 	i = 0;
 	pipes = ft_countpipes(g, &i, exec);
@@ -91,12 +97,15 @@ void	ft_exer(t_general *g, size_t exec)
 		exit(1);
 	}
 	i--;
+	allcontent = ft_findallcontent(g, i);
 	while (++i < g->argssize && g->args[i].type != 5)
 	{
 		if (g->args[i].type == 3)
-			ft_checknexer(g, g->args[i].content);
+			ft_checknexer(g, allcontent);
 		if (g->args[i].type == 8)
 			ft_heredock(g, i, exec);
+		if (g->args[i].type == 3 || g->args[i].type == 8)
+			break ;
 	}
 	exit(0);
 }

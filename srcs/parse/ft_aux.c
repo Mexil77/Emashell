@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:09:55 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/01/04 12:31:33 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/04 16:12:13 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ size_t	ft_spchar(char c)
 	return (0);
 }
 
-size_t	ft_errormsg(char *str)
+size_t	ft_errormsg(char *str, size_t ret)
 {
 	write(2, str, ft_strlen(str));
-	return (0);
+	return (ret);
 }
 
 size_t	ft_error(size_t ncomands, size_t i, char **cmds)

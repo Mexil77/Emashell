@@ -6,7 +6,7 @@
 #    By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/18 17:52:26 by emgarcia          #+#    #+#              #
-#    Updated: 2022/01/03 19:08:15 by emgarcia         ###   ########.fr        #
+#    Updated: 2022/01/04 15:55:24 by emgarcia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,6 @@ INCLUDES	=	-I ./includes -I /Users/$(USER)/.brew/opt/readline/include
 LDFLAGS		=	-L /Users/$(USER)/.brew/opt/readline/lib
 
 #CFLAGS		=	-Wall -Wextra -Werror
-#CFLAGS		=	-Wall -Wextra -Werror -lreadline
 CFLAGS		=	-Wall -Wextra -Werror -g3 -fsanitize=address
 
 SRCS		=	main.c ft_ownenv.c											\

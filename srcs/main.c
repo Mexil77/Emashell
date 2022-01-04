@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 18:13:22 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/01/04 12:13:31 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/04 15:55:29 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_prompt(t_general *g)
 			if (g->args)
 				ft_executor(g);
 			ft_freegeneral(g);
-			//system("leaks minishell > /dev/ttys000");
+			//system("leaks minishell > /dev/ttys001");
 		}
 	}
 	free(command);
