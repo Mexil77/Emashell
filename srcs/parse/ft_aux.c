@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:09:55 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/01/03 18:00:14 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/04 12:31:33 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ size_t	ft_spchar(char c)
 
 size_t	ft_errormsg(char *str)
 {
-	printf("%s", str);
+	write(2, str, ft_strlen(str));
 	return (0);
 }
 

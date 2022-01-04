@@ -6,13 +6,13 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 00:49:04 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/01/04 12:14:01 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/04 12:43:17 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <emashell.h>
 
-void	ft_dupfds(t_general *g, size_t iarg, size_t exec)
+size_t	ft_dupfds(t_general *g, size_t iarg, size_t exec)
 {
 	size_t	i;
 	size_t	fdpos;
@@ -28,20 +28,9 @@ void	ft_dupfds(t_general *g, size_t iarg, size_t exec)
 		dup2(g->pipes[exec][1], STDOUT_FILENO);
 	while (g->fds && iarg < g->argssize && g->args[iarg].type != 5
 		&& g->args[iarg].type != 8)
-	{
-		if (g->args[iarg].type == 1 || g->args[iarg].type == 2
-			|| g->args[iarg].type == 7)
-		{
-			if (g->fds[fdpos] == -1)
-				perror("No such file or directory");
-			else if (g->args[iarg].type == 1)
-				dup2(g->fds[fdpos], STDIN_FILENO);
-			else
-				dup2(g->fds[fdpos], STDOUT_FILENO);
-			fdpos++;
-		}
-		iarg++;
-	}
+		if (!ft_validatefds(g, &iarg, &fdpos))
+			return (0);
+	return (1);
 }
 
 char	**ft_getbins(t_general *g)
@@ -96,7 +85,11 @@ void	ft_exer(t_general *g, size_t exec)
 
 	i = 0;
 	pipes = ft_countpipes(g, &i, exec);
-	ft_dupfds(g, i, exec);
+	if (!ft_dupfds(g, i, exec))
+	{
+		ft_closeallfdspipes(g);
+		exit(1);
+	}
 	i--;
 	while (++i < g->argssize && g->args[i].type != 5)
 	{

@@ -6,11 +6,28 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 12:21:26 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/01/03 19:14:25 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/04 12:38:49 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <emashell.h>
+
+size_t	ft_validatefds(t_general *g, size_t *iarg, size_t *fdpos)
+{
+	if (g->args[*iarg].type == 1 || g->args[*iarg].type == 2
+		|| g->args[*iarg].type == 7)
+	{
+		if (g->fds[*fdpos] == -1)
+			return (ft_errormsg("No such file or directory\n"));
+		else if (g->args[*iarg].type == 1)
+			dup2(g->fds[*fdpos], STDIN_FILENO);
+		else
+			dup2(g->fds[*fdpos], STDOUT_FILENO);
+		(*fdpos)++;
+	}
+	(*iarg)++;
+	return (1);
+}
 
 size_t	ft_isinvalidbuiltin(char **cmd)
 {

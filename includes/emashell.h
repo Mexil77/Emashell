@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:41:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/01/03 19:07:47 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/04 12:38:57 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void	ft_echo(char **cmd);
 size_t	ft_childbuiltin(t_general *g, char **exe);
 void	ft_pwd(void);
 void	ft_env(char **ownenv);
+size_t	ft_validatefds(t_general *g, size_t *iarg, size_t *fdpos);
 
 void	ft_signals(void);
 void	ft_sigheredock(void);
