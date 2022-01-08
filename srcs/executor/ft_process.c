@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 00:49:04 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/01/04 16:41:47 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/05 11:32:32 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,6 @@ void	ft_exer(t_general *g, size_t exec)
 			ft_checknexer(g, allcontent);
 		if (g->args[i].type == 8)
 			ft_heredock(g, i, exec);
-		if (g->args[i].type == 3 || g->args[i].type == 8)
-			break ;
 	}
 	exit(0);
 }

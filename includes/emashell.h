@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:41:37 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/01/04 16:13:14 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/08 17:19:34 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ char	*ft_dropspace(char *str);
 size_t	ft_isspar(char *str);
 void	ft_freegeneral(t_general *g);
 size_t	ft_errormsg(char *str, size_t ret);
+void	ft_checkquote(char c, char *kindquote);
 
 void	ft_executor(t_general *g);
 void	ft_createfds(t_general *g);
