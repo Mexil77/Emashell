@@ -6,7 +6,7 @@
 /*   By: emgarcia <emgarcia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 19:11:48 by emgarcia          #+#    #+#             */
-/*   Updated: 2022/01/03 18:20:48 by emgarcia         ###   ########.fr       */
+/*   Updated: 2022/01/12 14:18:06 by emgarcia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,31 @@ size_t	ft_ignorespace(size_t i, char *str)
 	return (i);
 }
 
+size_t	ft_checkjoinsp(char *str, size_t *spaces)
+{
+	size_t	i;
+	size_t	others;
+
+	others = 1;
+	i = -1;
+	while (str[++i])
+	{
+		if (str[i] == ' ')
+			(*spaces)++;
+		else if (!ft_spchar(str[i]))
+			others = 1;
+		else if (ft_spchar(str[i]) && others)
+			others = 0;
+		else if (ft_spchar(str[i]) && !others && !ft_spchar(str[i - 1]))
+		{
+			printf("syntax error near unexpected token `");
+			printf("%c'\n", str[i]);
+			return (0);
+		}
+	}
+	return (1);
+}
+
 char	*ft_dropspace(char *str)
 {
 	size_t	spaces;
@@ -66,10 +91,11 @@ char	*ft_dropspace(char *str)
 	char	*strnsp;
 
 	spaces = 0;
-	i = -1;
-	while (str[++i])
-		if (str[i] == ' ')
-			spaces++;
+	if (!ft_checkjoinsp(str, &spaces))
+	{
+		g_piperet = 258;
+		return (0);
+	}
 	strnsp = ft_calloc(sizeof(char), (ft_strlen(str) - spaces + 1));
 	if (!strnsp)
 		return (NULL);
